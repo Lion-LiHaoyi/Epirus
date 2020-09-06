@@ -27,7 +27,7 @@ English documents are translated using Google/Baidu Translator and manually chec
 		- [Tanks](#tanks)
 		- [Sniper gun](#sniper-gun)
 		- [Double gun shooter](#double-gun-shooter)
-	- [Defense](#defense)
+	- [Defense class](#defense-class)
 		- [Defense](#defense)
 		- [Rebound](#rebound)
 		- [Eight trigrams array](#eight-trigrams-array)
