@@ -2,6 +2,11 @@
 ------------
 International Epirus Game Rulemaking Association
 
+[中文](https://github.com/Lion-LiHaoyi/Epirus/blob/master/README.md)
+
+Note:
+English documents are translated using Google/Baidu Translator and manually checked, keeping in sync with every stable version update of Chinese documents. Although it has been polished as much as possible, there is no guarantee that the meaning is exactly the same as the original document. If you can read Chinese, it is recommended to read Chinese documents.
+
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Introduction](#introduction)
@@ -83,7 +88,7 @@ The association is only responsible for the formulation and modification of the 
 If we have a nearly infinite AA battery, then we can make a quantum entanglement with energy close to infinity. We can launch it into space. According to the expansion theory of the universe, this nearly infinite quantum entanglement will be reflected back. We can draw an Epirus (efficient power in real universe) according to the wavelength of return. The expansion coefficient of the universe can be obtained by calculating the semi closed value of this function. By using the CUB instrument, we can obtain an efficient energy, which we call Ji
 
 ------------
-# Rules of the game
+## Rules of the game
 
 Each character has n drops of blood at the beginning, and then begins the game
 
