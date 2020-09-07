@@ -135,7 +135,7 @@ Action effect: gain an Ep
 
 Cost: None
 
-Hand gesture: clench your hands and separate them
+Gesture: clench your hands and separate them
 
 
 #### Energy storage
@@ -144,7 +144,7 @@ Effect: accumulate a unit of electric power (eP) or explosive power (EP) to supp
 
 Cost: 1Ep
 
-Hand gesture: both hands clench the fist
+Gesture: both hands clench the fist
 
 #### Energy-gathering ring
 
