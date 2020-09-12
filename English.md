@@ -73,7 +73,7 @@ This game rule is based on [CC by-nc-sa](https://creativecommons.org/licenses/by
 
 Current version: v2.0.1
 
-Last updated at 15:45 GMT+8 2020/9/6
+Last updated at 15:45 UTC+8:00 2020/9/6
 
 ------------
 
