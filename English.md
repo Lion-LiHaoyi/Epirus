@@ -109,9 +109,9 @@ Each character has n drops of blood at the beginning, and then begins the game
 ## Game mode
 
 Here are just a few of the patterns that use more people
-1. Standard mode: all skills can be used. Each character has 3 HP at the initial stage
-1. Fast mode: you can only use "Ji", "Gun" and "Defense". Each character has 3 HP in the initial stage
-1. Emperor of Europe mode: you can only use the three skills of "Ji", "Vajra shield" and "Eight trigrams array". Each character has HP at the initial stage
+1. Standard mode: all skills can be used. Each character has 3HP at the initial stage
+1. Fast mode: you can only use "Ji", "Gun" and "Defense". Each character has 3HP in the initial stage
+1. Emperor of Europe mode: you can only use the three skills of "Ji", "Vajra shield" and "Eight trigrams array". Each character has 3HP at the initial stage
 1. Vampire mode: can use all skills, each deduction of each other's blood, you can recover a drop of blood, each character has 2HP or 1HP at the initial stage
 
 ------------
