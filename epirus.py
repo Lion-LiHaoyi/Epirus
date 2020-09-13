@@ -2,6 +2,21 @@ import math
 import random
 
 
+class Players:  # 玩家类
+    name = ''
+    Ep = 0
+    power = 0  # 蓄能
+    HP = 3
+    skill = 0  # 使用技能
+
+    def __init__(self, n):
+        self.name = n
+
+
+print('欢迎来到拍手游戏')
+player = [Players('玩家'), Players('电脑')]
+
+
 class Skills:  # 技能类
     cost = 0  # 花费
     who = 0  # 对象
@@ -16,15 +31,11 @@ class Skills:  # 技能类
 
     def doing(self, n):
         to = (self.who + n) & 1
-        p = ' '
-        if(to == 0):
-            p = 'player'
-        else:
-            p = 'computer'
-        print('{}受到了{}，技能的优先度为{}'.format(p, self.name, self.priority))
+        print('{}受到了{}，技能的优先度为{}'.format(
+            player[to].name, self.name, self.priority))
 
 
-skills = [Skills('ジ', -1, 0),
+skills = [Skills('ジ', -1, 0, 0),
           Skills('防御', 0, 0),
           Skills('反弹', 0, 0),
           Skills('超反', 1, 0),
@@ -40,72 +51,49 @@ table = [[[-1, 0], [0, 0], [0, -1], [0, 0]],  # 基础结算表
          [[-1, 0], [-1, 0], [-1, 0], [0, 0]]]
 
 
-class Players:  # 玩家类
-    Ep = 0
-    power = 0  # 蓄能
-    HP = 3
-    skill = 0  # 使用技能
-
-
-print('欢迎来到拍手游戏')
-player, computer = Players(), Players()
-
-
 def Doing():  # 结算
-    # 勾
-    if(player.skill == 8):
-        if(computer.skill == 0 and player.HP==1):
-            player.HP += 1
-            computer.HP -= 1
-    elif(computer.skill == 8 and computer.HP==1):
-        if(player.skill == 0):
-            computer.HP += 1
-            player.HP -= 1
-    # 同时攻击类
-    elif(player.skill > 3 and computer.skill > 3):
-        if(skills[player.skill].priority > skills[computer.skill].priority):
-            computer.HP += table[player.skill - 4][0][0]
-        elif (skills[player.skill].priority < skills[computer.skill].priority):
-            player.HP += table[computer.skill - 4][0][0]
-    # 一方防御类
-    elif(player.skill > 3):
-        computer.HP += table[player.skill - 4][computer.skill][0]
-        player.HP += table[player.skill - 4][computer.skill][1]
-    elif(computer.skill > 3):
-        computer.HP += table[computer.skill - 4][player.skill][1]
-        player.HP += table[computer.skill - 4][player.skill][0]
-    # 狙击
-    if(player.skill == 7 and computer.skill == 0):
-        if(random.choice(range(0, 8)) == 0):
-            print('computer被爆头！')
-            computer.HP -= 1
-    if(computer.skill == 7 and player.skill == 0):
-        if(random.choice(range(0, 8)) == 0):
-            print('player被爆头！')
-            player.HP -= 1
+    for i in range(0, 2):
+        # 勾
+        if(player[i].skill == 8):
+            if(skills[player[(i + 1) & 1].skill].priority < 3 and player[i].HP == 1):
+                player[i].HP += 1
+                player[(i + 1) & 1].HP -= 1
+        # 同时攻击类
+        elif(player[i].skill > 3 and player[(i + 1) & 1].skill > 3):
+            if(skills[player[i].skill].priority > skills[player[(i + 1) & 1].skill].priority):
+                player[(i + 1) & 1].HP += table[player[i].skill - 4][0][0]
+        # 一方防御类
+        elif(player[i].skill > 3):
+            player[(i + 1) & 1].HP += table[player[i].skill - 4][player[(i + 1) & 1].skill][0]
+            player[i].HP += table[player[i].skill - 4][player[(i + 1) & 1].skill][1]
+        # 狙击
+        if(player[i].skill == 7 and player[(i + 1) & 1].skill == 0):
+            if(random.choice(range(0, 8)) == 0):
+                print('{}被爆头！'.format(player[(i + 1) & 1].name))
+                player[(i + 1) & 1].HP -= 1
 
 
-while player.HP > 0 and computer.HP > 0:
+while player[0].HP > 0 and player[1].HP > 0:
     print('Player HP:{} Ep{}   Computer HP:{} Ep{}\n'.format(
-        player.HP, player.Ep, computer.HP, computer.Ep))
+        player[0].HP, player[0].Ep, player[1].HP, player[1].Ep))
     for i in range(0, len(skills)):
         print('{}、{}'.format(i, skills[i].name))
-    player.skill = int(input('输入你的技能符'))
+    player[0].skill = int(input('输入你的技能符'))
     # 贷款判定
-    if(player.Ep >= skills[player.skill].cost):
-        player.Ep -= skills[player.skill].cost
-        skills[player.skill].doing(0)
+    if(player[0].Ep >= skills[player[0].skill].cost):
+        player[0].Ep -= skills[player[0].skill].cost
+        skills[player[0].skill].doing(0)
     else:
-        player.HP -= (skills[player.skill].cost - player.Ep) / 2
-        player.Ep = 0
-        player.skill = 0
+        player[0].HP -= (skills[player[0].skill].cost - player[0].Ep) / 2
+        player[0].Ep = 0
+        player[0].skill = 0
     # 电脑不会贷款
     check = 0
     while not check:
-        computer.skill = random.choice(range(0, len(skills) + 5))
-        if(computer.skill >= len(skills)):
-            computer.skill = 0
-        check = computer.Ep >= skills[computer.skill].cost
-    computer.Ep -= skills[computer.skill].cost
-    skills[computer.skill].doing(1)
+        player[1].skill = random.choice(range(0, len(skills) + 5))
+        if(player[1].skill >= len(skills)):
+            player[1].skill = 0
+        check = player[1].Ep >= skills[player[1].skill].cost
+    player[1].Ep -= skills[player[1].skill].cost
+    skills[player[1].skill].doing(1)
     Doing()
