@@ -53,9 +53,10 @@ table = [[[-1, 0], [0, 0], [0, -1], [0, 0], [-1, -1]],  # 基础结算表
          [[-1, 0], [-1, 0], [0, -1], [0, 0], [-1, -1]],
          [[-1, 0], [-1, 0], [-1, 0], [0, 0], [-1, 0]],
          [[-2, 0], [0, 0], [0, 0], [0, 0], [-2, 0]]]
-
+t = 0
 # 游戏过程
 while player[0].HP > 0 and player[1].HP > 0:
+    t += 1
     print('Player HP:{} Ep{}   Computer HP:{} Ep{}\n'.format(
         player[0].HP, player[0].Ep, player[1].HP, player[1].Ep))
     for i in range(0, len(skills)):
@@ -82,6 +83,8 @@ while player[0].HP > 0 and player[1].HP > 0:
         if(player[1].skill >= len(skills)):
             if(player[1].skill > len(skills) + 3):
                 player[1].skill = 0
+            elif(player[1].HP == 1):
+                player[1].skill = 11
             else:
                 player[1].skill = 10
         check = (player[1].Ep >= skills[player[1].skill].cost
@@ -146,4 +149,5 @@ elif(player[0].HP <= 0):
     print('你输了')
 else:
     print('你赢了')
+print('一共进行了{}回合'.format(t))
 input('按回车退出')
