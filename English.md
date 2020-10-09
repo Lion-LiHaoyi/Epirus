@@ -5,7 +5,7 @@ International Epirus Game Rulemaking Association
 [中文](https://github.com/Lion-LiHaoyi/Epirus/blob/master/README.md)
 
 Note:
-English documents are translated using Google/Baidu Translator and manually checked, keeping in sync with every stable version update of Chinese documents. Although it has been polished as much as possible, there is no guarantee that the meaning is exactly the same as the original document. If you can read Chinese, it is recommended to read Chinese documents.
+English documents are translated using Google/Baidu/Youdao Translator and manually checked, keeping in sync with every stable version update of Chinese documents. Although it has been polished as much as possible, there is no guarantee that the meaning is exactly the same as the original document. If you can read Chinese, it is recommended to read Chinese documents.
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -71,9 +71,9 @@ Epirus game is a popular real-time war game for teenagers in the international c
 
 This game rule is based on [CC by-nc-sa](https://creativecommons.org/licenses/by-nc-sa/4.0) source protocol, different people can make certain changes to the rules according to the specific situation, and some excellent skills will also be adopted by the association. The right of final interpretation belongs to the International Epirus Game Rulemaking Association
 
-Current version: v2.0.1
+Current version: v2.0.2
 
-Last updated at 15:45 UTC+8:00 2020/9/6
+Last updated at 18:32 UTC+8:00 2020/10/9
 
 ------------
 
@@ -302,9 +302,9 @@ Special:
 
 #### Railgun
 
-![](https://img.moegirl.org/common/6/67/6770373.jpg)
+![picture](https://s1.ax1x.com/2020/10/09/0rmL5Q.png)
 
-Action effect: causes the target to suffer 2 points of electrical damage, which can break the rebound and defense
+Effect: causes the target to suffer 2 points of electrical damage, which can break the rebound and defense
 
 Cost: 2Ep and 1eP
 
@@ -312,7 +312,7 @@ Gesture: one hand clenches the fist, presses the thumb under the index finger, a
 
 #### Lightning gun
 
-Effect: make non-defensive skills invalid
+Effect: invalidates all abilities except defense and bounce
 
 Cost: 2Ep
 
@@ -328,7 +328,7 @@ Special:
 Effect:
 
 1. Make the target take 2 electrical damage
-1. Make the target skill invalid except the non-defensive skill. The skill can鈥檛 be used in 3 rounds except Ji, defense, rebound, vajra shield and rattan beetle
+1. Make the target skill invalid except the non-defensive skill. The skill can't be used in 3 rounds except Ji, defense, rebound, vajra shield and rattan beetle, or reduce 1HP
 1. If the target uses a skill against another person or someone against the target, the character will suffer collateral damage at the same time, and the skill will also be invalid
 
 Cost: 5Ep
@@ -451,13 +451,13 @@ Effect: the next time one of the characters is harmed, the other gets the same d
 
 #### Hop back and forth
 
-Trigger condition: two characters use mirror reflection at the same time, and the copy object and output object are each other
+Trigger condition: two characters use mirror reflection at the same time, and the copy object and the output object are eventually connected in a ring
 
-Effect: two people suffer 1 point of light & fire damage at the same time
+Effect: these players suffer 1 point of light & fire damage at the same time
 
 #### Spotlight
 
-Trigger condition: two characters use "Specular reflection" on each other at the same time. The copy object is the other and the output object is the same person
+Trigger condition: two characters use "Specular reflection" on each other at the same time, and the copy object is the other and the output object is the same person
 
 Effect: 1 point of light & fire damage to the output object
 
