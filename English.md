@@ -131,7 +131,7 @@ Judgment: both sides guess fist
 
 #### Ji
 
-Action effect: gain an Ep
+Effect: gain an Ep
 
 Cost: None
 
@@ -170,7 +170,7 @@ Special: gun priority is 2
 
 #### Laser sword
 
-Action effect: causes the target to suffer 1 point of light damage, which can break the rebound
+Effect: causes the target to suffer 1 point of light damage, which can break the rebound
 
 Cost: 2Ep
 
@@ -178,7 +178,7 @@ Gesture: clasp hands and face the target with gun gesture
 
 #### Tanks
 
-Action effect: reduce 1HP to the target, which can break defense and transfer damage
+Effect: reduce 1HP to the target, which can break defense and transfer damage
 
 Cost: 2Ep
 
@@ -186,7 +186,7 @@ Gesture: the gun gesture of the right hand is facing the target, and the left ha
 
 #### Sniper gun
 
-Action effect: reduce a HP to the target, which can break the rebound and defense
+Effect: reduce a HP to the target, which can break the rebound and defense
 
 Cost: 2Ep
 
@@ -290,7 +290,7 @@ Special: the lightning gun needs to work on the user to make it invalid
 
 #### Soul capturing fingering
 
-Action effect: reduce 1HP to the object of action, and recover 1HP at the same time
+Effect: reduce 1HP to the object of action, and recover 1HP at the same time
 
 Cost: 3Ep
 
@@ -433,7 +433,7 @@ Gesture: Make a fist with one hand and stand upright with the forearm facing the
 
 #### Purification
 
-Action effect: make all persistent effects and existing states disappear. Restore n-1 HP for every n spells purified
+Effect: make all persistent effects and existing states disappear. Restore n-1 HP for every n spells purified
 
 Cost: 3Ep
 
