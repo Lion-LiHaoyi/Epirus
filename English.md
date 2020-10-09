@@ -294,7 +294,7 @@ Effect: reduce 1HP to the object of action, and recover 1HP at the same time
 
 Cost: 3Ep
 
-Hand gesture: hook the index finger with one hand, and the other fingers clench the fist laterally to the affected person
+Gesture: hook the index finger with one hand, and the other fingers clench the fist laterally to the affected person
 
 Special:
 1. It can only be used when there is only one drop of blood left
@@ -333,7 +333,7 @@ Effect:
 
 Cost: 5Ep
 
-Hand gesture: both hands reach out and move from top to bottom towards the subject
+Gesture: both hands reach out and move from top to bottom towards the subject
 
 Special: the real thunder priority is 4
 
