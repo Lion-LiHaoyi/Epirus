@@ -34,7 +34,7 @@ English documents are translated using Google/Baidu/Youdao Translator and manual
 		- [Stepless speed change](#stepless-speed-change)
 		- [Vajra shield](#vajra-shield)
 		- [Rattan beetle](#rattan-beetle)
-		- [Super rebound](#super-rebound)
+		- [Archetype controller](#archetype-controller)
 		- [Holographic barrier](#holographic-barrier)
 	- [Special class](#special-class)
 		- [Soul capturing fingering](#soul-capturing-fingering)
@@ -73,9 +73,9 @@ This game rule is based on [CC by-nc-sa](https://creativecommons.org/licenses/by
 
 The computer two-player battle program based on this game is still under development, you can download the corresponding program through the resources, if you have suggestions can be put forward. Make sure you have python3 installed on your computer before playing.
 
-Current version: v2.0.2
+Current version: v2.1.0
 
-Last updated at 18:32 UTC+8:00 2020/10/9
+Last updated at 9:30 UTC+8:00 2020/10/18
 
 ------------
 
@@ -112,9 +112,9 @@ Each character has n drops of blood at the beginning, and then begins the game
 
 Here are just a few of the patterns that use more people
 1. Standard mode: all skills can be used. Each character has 3HP at the initial stage
-1. Fast mode: you can only use "Ji", "Gun" and "Defense". Each character has 3HP in the initial stage
+1. Fast mode: you can only use "Ji", "Gun" and "Defense". Each character has 1HP in the initial stage, the defense cannot be used 3 times in a row
 1. Emperor of Europe mode: you can only use the three skills of "Ji", "Vajra shield" and "Eight trigrams array". Each character has 3HP at the initial stage
-1. Vampire mode: can use all skills, each deduction of each other's blood, you can recover a drop of blood, each character has 2HP or 1HP at the initial stage
+1. Vampire mode: can use all skills, each deduction of each other's 1HP, you can recover 1HP, each character has 2HP or 1HP at the initial stage
 
 ------------
 
@@ -162,7 +162,7 @@ Gesture: hands clench fist, up and down
 
 #### Guns
 
-Effect: reduce 1HP on the target
+Effect: causes the target to suffer 1 point of damage
 
 Cost: 1Ep
 
@@ -180,7 +180,7 @@ Gesture: clasp hands and face the target with gun gesture
 
 #### Tanks
 
-Effect: reduce 1HP to the target, which can break defense and transfer damage
+Effect: causes the target to suffer 1 fire point of damage, which can break defense and transfer damage
 
 Cost: 2Ep
 
@@ -188,7 +188,7 @@ Gesture: the gun gesture of the right hand is facing the target, and the left ha
 
 #### Sniper gun
 
-Effect: reduce a HP to the target, which can break the rebound and defense
+Effect: causes the target to suffer 1 point of damage, which can break the rebound and defense
 
 Cost: 2Ep
 
@@ -251,7 +251,7 @@ Palm up with the other hand open
 Effect:
 
 1. The effect is the same as "Defense"
-1. Make a judgment. If you win, the attacker will reduce 1HP
+1. Make a judgment. If you win, causes the target to suffer 1 point of damage
 
 Cost: 1Ep
 
@@ -268,7 +268,7 @@ Cost: 1Ep
 
 Gesture: the fingers of the two hands are crossed, and the palm of the palm is facing the target
 
-#### Super rebound
+#### Archetype controller
 
 Effect: prevent skill damage except mine and transfer damage. If the total damage is greater than or equal to 3, the damage will be transferred to the player
 
@@ -278,7 +278,7 @@ Gesture: clench your hands and stand your arms in front of your chest
 
 #### Holographic barrier
 
-Effect: gives the subject a "Super rebound"
+Effect: gives the subject a "Archetype controller"
 
 Cost: 1Ep
 
@@ -292,7 +292,7 @@ Special: the lightning gun needs to work on the user to make it invalid
 
 #### Soul capturing fingering
 
-Effect: reduce 1HP to the object of action, and recover 1HP at the same time
+Effect: causes the target to suffer 1 point of damage, and recover 1HP at the same time
 
 Cost: 3Ep
 
@@ -352,8 +352,8 @@ Gesture: extend the index fingers of both hands and hold the index fingers of th
 #### Laser eye
 
 Effect:
-1. If the target uses defensive skills (except super rebound) or transfers damage, it will not work
-1. If there are two laser eyes on super rebound, super rebound is invalid
+1. If the target uses defensive skills (except Archetype controller) or transfers damage, it will not work
+1. If there are two laser eyes on Archetype controller, Archetype controller is invalid
 1. If the target is not using a defense skill, he will receive a point of light damage
 
 Cost: 1Ep and 1EP are consumed for the first use, and 2Ep for continuous use thereafter
@@ -388,7 +388,7 @@ Cost: 2Ep
 
 Gesture: one hand flat, the other hand vertical down tapping palm
 
-Special: can be blocked by "Super rebound"
+Special: can be blocked by "Archetype controller"
 
 #### Mines
 
@@ -405,7 +405,7 @@ Special:
 
 #### Provocation
 
-Effect: the target must use attack skills on the user in the next round, otherwise reduce 1HP
+Effect: the target must use attack skills on the user in the next round, otherwise, 1HP will be reduced at the end of the next round
 
 Cost: 2Ep
 
@@ -414,9 +414,9 @@ Gesture: One-handed index finger hooks the rest of the fingers to make a fist, t
 #### Overload gun
 
 Effect:
-1. When the user uses it for the first time, it reduces the target 1HP
-1. When using the second time, reduce the target 2HP
-1. On the third use, the target will lose 2HP and lose all his/her Ep
+1. When the user uses it for the first time, the targetsuffer 1 point of damage
+1. When using the second time, the target suffer 2 point of damage
+1. On the third use, the target will suffer 2 point of damage and lose all his/her Ep
 1. Then back to the first use
 
 Cost: 2 Eps for the first time, all Eps for the second time (at least one), all Eps for the third time and an extra HP loss
