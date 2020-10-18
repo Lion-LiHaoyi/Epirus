@@ -314,7 +314,7 @@ Gesture: one hand clenches the fist, presses the thumb under the index finger, a
 
 #### Lightning gun
 
-Effect: invalidates all abilities except defense and bounce
+Effect: invalidates all abilities except defense, rebound and Archetype controller
 
 Cost: 2Ep
 
