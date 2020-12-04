@@ -5,7 +5,7 @@ International Epirus Game Rulemaking Association
 [中文](https://github.com/Lion-LiHaoyi/Epirus/blob/master/README.md)
 
 Note:
-English documents are translated using Google/Baidu/Youdao Translator and manually checked, keeping in sync with every stable version update of Chinese documents. Although it has been polished as much as possible, there is no guarantee that the meaning is exactly the same as the original document. If you can read Chinese, it is recommended to read Chinese documents.
+English documents are translated using Google/Baidu/Youdao Translator and manually checked, keeping in sync with every stable version update of Chinese documents. Although it has been polished as much as possible, there is no guarantee that the meaning is the same as the original document. If you can read Chinese, it is recommended to read Chinese documents.
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -67,11 +67,11 @@ English documents are translated using Google/Baidu/Youdao Translator and manual
 
 # Introduction
 
-Epirus game is a popular real-time war game for teenagers in the international community. It has many advantages, such as enhancing the friendship between students and cultivating their logical reasoning ability. The game has its own different rules in different places. In order to unify the rules and strengthen the regulations,the International Epirus Game Rulemaking Association has made clear the rules of the game.
+Epirus game is a popular real-time war game for teenagers in the international community. It has many advantages, such as enhancing the friendship between students and cultivating their logical reasoning ability. The game has its own different rules in different places. To unify the rules and strengthen the regulations, the International Epirus Game Rulemaking Association has made clear the rules of the game.
 
 This game rule is based on [CC by-nc-sa](https://creativecommons.org/licenses/by-nc-sa/4.0) source protocol, different people can make certain changes to the rules according to the specific situation, and some excellent skills will also be adopted by the association. The right of final interpretation belongs to the International Epirus Game Rulemaking Association
 
-The computer two-player battle program based on this game is still under development, you can download the corresponding program through the resources, if you have suggestions can be put forward. Make sure you have python3 installed on your computer before playing.
+The computer two-player battle program based on this game is still under development, you can download the corresponding program through the resources if you have suggestions that can be put forward. Make sure you have python3 installed on your computer before playing.
 
 Current version: v2.1.0
 
@@ -81,18 +81,18 @@ Last updated at 9:30 UTC+8:00 2020/10/18
 
 ## Disclaimer
 
-The association is only responsible for the formulation and modification of the rules of the game. Please abide by the relevant laws and regulations when playing. Except for the rules of the game, all responsibilities have nothing to do with the association.It is recommended to pay attention to the time and occasion before playing to avoid unnecessary trouble.
+The association is only responsible for the formulation and modification of the rules of the game. Please abide by the relevant laws and regulations when playing. Except for the rules of the game, all responsibilities have nothing to do with the association. It is recommended to pay attention to the time and occasion before playing to avoid unnecessary trouble.
 
 ------------
 
 ## Game principle
 
-If we have a nearly infinite AA battery, then we can make a quantum entanglement with energy close to infinity. We can launch it into space. According to the expansion theory of the universe, this nearly infinite quantum entanglement will be reflected back. We can draw an Epirus (efficient power in real universe) according to the wavelength of return. The expansion coefficient of the universe can be obtained by calculating the semi closed value of this function. By using the CUB instrument, we can obtain an efficient energy, which we call Ji
+If we have a nearly infinite AA battery, then we can make a quantum entanglement with energy close to infinity. We can launch it into space. According to the expansion theory of the universe, this nearly infinite quantum entanglement will be reflected. We can draw an Epirus (efficient power in real universe) according to the wavelength of return. The expansion coefficient of the universe can be obtained by calculating the semi-closed value of this function. By using the CUB instrument, we can obtain an efficient energy, which we call Ji
 
 ------------
 ## Rules of the game
 
-Each character has n drops of blood at the beginning, and then begins the game
+Each character has n drops of blood at the beginning and then begins the game
 
 ### Priority principle:
 
@@ -166,7 +166,7 @@ Effect: causes the target to suffer 1 point of damage
 
 Cost: 1Ep
 
-Gesture: two handed gun gesture facing the target
+Gesture: both hands are gun gesture facing the target
 
 Special: gun priority is 2
 
@@ -184,7 +184,7 @@ Effect: causes the target to suffer 1 fire point of damage, which can break defe
 
 Cost: 2Ep
 
-Gesture: the gun gesture of the right hand is facing the target, and the left hand is extended and the palm of the hand is close to the bottom of the right hand
+Gesture: the gun gesture of the right hand is facing the target, and the left hand is extended and the palm is close to the bottom of the right hand
 
 #### Sniper gun
 
@@ -192,13 +192,13 @@ Effect: causes the target to suffer 1 point of damage, which can break the rebou
 
 Cost: 2Ep
 
-Gesture: two handed gun gesture, front and back facing the target
+Gesture: both hands are gun gesture, front and back facing the target
 
 Special:
 
 1. Sniper gun priority is 1
 1. If the target or other players use other attack effects on the player, sniping will not work
-1. In addition to 1, if the skill used by the target has no effect on the attacker, three rounds of judgment can be made. If all the attackers win, the attacker will reduce an extra drop of blood (called "Blow the head")
+1. In addition to 1, if the skill used by the target does not affect the attacker, three rounds of judgment can be made. If all the attackers win, the attacker will reduce an extra drop of blood (called "Blow the head")
 
 #### Double gun shooter
 
@@ -206,7 +206,7 @@ Effect: use "Gun" on both characters
 
 Cost: 3Ep
 
-Gesture: the two gun gestures faces two different subjects
+Gesture: the two gun gestures faces two different targets
 
 Special: when mirror reflection is copied to a double gun shooter, it is only equivalent to copying a gun
 
@@ -255,7 +255,7 @@ Effect:
 
 Cost: 1Ep
 
-Gesture: clench your hands, cross your arms in front of your chest and face the subject
+Gesture: clench your hands, cross your arms in front of your chest and face the target
 
 #### Rattan beetle
 
@@ -270,7 +270,7 @@ Gesture: the fingers of the two hands are crossed, and the palm of the palm is f
 
 #### Archetype controller
 
-Effect: prevent skill damage except mine and transfer damage. If the total damage is greater than or equal to 3, the damage will be transferred to the player
+Effect: prevent skill damage except for mine and transfer damage. If the total damage is greater than or equal to 3, the damage will be transferred to the player
 
 Cost: 1Ep
 
@@ -278,7 +278,7 @@ Gesture: clench your hands and stand your arms in front of your chest
 
 #### Holographic barrier
 
-Effect: gives the subject a "Archetype controller"
+Effect: gives the target a "Archetype controller"
 
 Cost: 1Ep
 
@@ -314,11 +314,11 @@ Gesture: one hand clenches the fist, presses the thumb under the index finger, a
 
 #### Lightning gun
 
-Effect: invalidates all abilities except defense, rebound and Archetype controller
+Effect: invalidates all abilities except defense, rebound, and Archetype controller
 
 Cost: 2Ep
 
-Gesture: one hand reaches out and moves from top to bottom towards the subject
+Gesture: one hand reaches out and moves from top to bottom towards the target
 
 Special:
 
@@ -330,12 +330,12 @@ Special:
 Effect:
 
 1. Make the target take 2 electrical damage
-1. Make the target skill invalid except the non-defensive skill. The skill can't be used in 3 rounds except Ji, defense, rebound, vajra shield and rattan beetle, or reduce 1HP
+1. Make the target skill invalid except for the non-defensive skill. The skill can't be used in 3 rounds except for Ji, defense, rebound, vajra shield, and rattan beetle, or reduce 1HP
 1. If the target uses a skill against another person or someone against the target, the character will suffer collateral damage at the same time, and the skill will also be invalid
 
 Cost: 5Ep
 
-Gesture: both hands reach out and move from top to bottom towards the subject
+Gesture: both hands reach out and move from top to bottom towards the target
 
 Special: the real thunder priority is 4
 
@@ -366,13 +366,13 @@ Effect: transfers damage except tank and laser eye to the target
 
 Cost: 2Ep
 
-Gesture: hands clasped facing the subject
+Gesture: hands clasped facing the target
 
 Special: transfer damage priority is 1
 
 #### Paste
 
-Effect: causes the subject to receive a spell
+Effect: causes the target to receive a spell
 
 Cost: 1Ep
 
@@ -392,7 +392,7 @@ Special: can be blocked by "Archetype controller"
 
 #### Mines
 
-Effect: if you are attacked by anything other than a sniper gun, all other characters in the game will take a point of fire damage
+Effect: if you are attacked by anything other than a sniper gun, all other characters in the game will make a point of fire damage
 
 Cost: 3Ep
 
@@ -414,14 +414,14 @@ Gesture: One-handed index finger hooks the rest of the fingers to make a fist, t
 #### Overload gun
 
 Effect:
-1. When the user uses it for the first time, the targetsuffer 1 point of damage
+1. When the user uses it for the first time, the target suffer 1 point of damage
 1. When using the second time, the target suffer 2 point of damage
 1. On the third use, the target will suffer 2 point of damage and lose all his/her Ep
 1. Then back to the first use
 
-Cost: 2 Eps for the first time, all Eps for the second time (at least one), all Eps for the third time and an extra HP loss
+Cost: 2 Eps for the first time, all Eps for the second time (at least one), all Eps for the third time, and an extra HP loss
 
-Gesture: one handed boxer with his back facing down to the target
+Gesture: make a fist with one hand and face the target with the hand facing down
 
 Special: can be offset by aggressive skills
 
@@ -469,7 +469,7 @@ Special: spotlight priority is 2
 
 Trigger condition: two characters use "Lightning gun" on the same character at the same time
 
-Effect: 1 point of electrical damage to the subject
+Effect: 1 point of electrical damage to the target
 
 #### The vampire Duke
 
