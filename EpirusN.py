@@ -1,11 +1,11 @@
-#本程序用于输出训练过程数据
-#规则：输出为赢方上回合HP，本回合使用技能及使用后Ep，之后是输方相应内容
-#以6个-1作为结尾
+# 本程序用于输出训练过程数据
+# 规则：输出为赢方上回合HP，本回合使用技能及使用后Ep，之后是输方相应内容
+# 以6个-1作为结尾
 
 import math
 import random
 import copy
-fo = open('data.txt', 'a+')
+fo = open('data', 'w')
 
 
 class Players:  # 玩家类
@@ -14,10 +14,26 @@ class Players:  # 玩家类
     skill = 0  # 使用技能
     last_skill = 0  # 上回合技能
     no = [0]  # 禁用技能
+    last_Ep = 0
 
 
 player = [Players(), Players()]
 data = [player[0], player[1]]
+ff = open('time', 'r')
+xx = int(ff.read())
+m, n = 18, 17
+ai = [[[[[[[0 for a in range(n)]for b in range(m)]for c in range(n + 1)]for d in range(5)]
+        for e in range(m)]for f in range(n)]for g in range(5)]
+f1 = open('table.data', 'r')
+for a in range(5):
+    for b in range(n):
+        for c in range(m):
+            for d in range(5):
+                for e in range(n + 1):
+                    for f in range(m):
+                        ai[a][b][c][d][e][f] = list(map(int, f1.readline().split()))
+
+ti = 0
 
 
 class Skills:  # 技能类
@@ -45,11 +61,12 @@ skills = [Skills('ジ', -1, 0, 0),
           Skills('坦克', 2, 1),
           Skills('狙击', 2, 1, 1),
           Skills('真正的落雷', 5, 1, 4),
+          Skills('雷击之枪', 2, 1, 5),
           Skills('摄魂指法', 3, 1),
           Skills('电磁炮', 2, 1),
           Skills('激光眼', 2, 1),
-          Skills('聚能环', '第一次使用3个ジ并获得个1个ジ，第二次连续使用获得2个ジ，第三次及之后获得3个ジ', 0, 0),
-          Skills('蓄能', 1, 0, 0)]
+          Skills('蓄能', 1, 0, 0),
+          Skills('聚能环', '第一次使用3个ジ并获得个1个ジ，第二次连续使用获得2个ジ，第三次及之后获得3个ジ', 0, 0)]
 
 player[0].no = player[1].no = [0] * len(skills)
 # 基础结算表
@@ -60,7 +77,7 @@ table = [[[-1, 0], [0, 0], [0, -1], [0, 0], [-1, -1], [0, -1]],  # 枪
          [[-1, 0], [-1, 0], [-1, 0], [0, 0], [-1, 0], [0, -1]],  # 狙击
          [[-2, 0], [0, 0], [0, 0], [0, 0], [-2, 0], [-2, -2]]]  # 大雷
 
-attact_num, lightning, snipe, bagua, gou, power = 0, 0, 0, 0, 0, len(skills) - 1
+attact_num, lightning, snipe, bagua, gou, power = 0, 0, 0, 0, 0, len(skills) - 2
 for i in range(0, len(skills)):
     if skills[i].name == '枪':
         attact_num = i
@@ -95,32 +112,44 @@ def Fail():
     player[0].skill = 0
 
 
-t, w = 0, 0
-
-
 def Choose_Skill(i):
+    a = (i + 1) & 1
     check = 0
     if (player[i].Ep == 0 and player[0].Ep == 0):
         player[i].skill = 0
     else:
         while not check:
-            player[i].skill = random.randint(0, len(skills) + 10)
+            player[i].skill = random.randint(0, len(skills) * 2 - 1)
             if player[i].skill >= len(skills):  # 电脑算法区
-                if player[i].skill > len(skills) + 5:
+                player[i].skill -= len(skills)
+                if(player[i].Ep < 18 and player[a].last_Ep < 18):
+                    #                    print(player[i].HP,player[i].last_skill,player[i].Ep,player[a].HP,player[a].last_skill,player[a].last_Ep)
+                    ta = ai[player[i].HP][player[i].last_skill][player[i].Ep][player[a].HP][player[a].last_skill][player[a].last_Ep]
+                    s = sum(ta)
+                    ss = 0
+                    for x in range(17):
+                        ss += ta[x]
+                        if ss >= s * player[i].skill / 17:
+                            player[i].skill = x
+                            break
+
+                '''if player[i].skill > len(skills) + 5:
                     player[i].skill = 0
                 elif player[i].HP == 1:
                     player[i].skill = gou
                 elif player[i].last_skill == power:
                     player[i].skill = random.choice([gou + 1, gou + 2])
-                elif player[(i + 1) & 1].last_skill == power:
+                elif player[t].last_skill == power:
                     player[i].skill = random.choice([3, 5, 6])
-                elif player[(i + 1) & 1].last_skill == power - 1:
+                elif player[t].last_skill == power - 1:
                     player[i].skill = random.randint(attact_num, gou)
                 else:
-                    player[i].skill = lightning
-            if player[i].skill == power - 1:
+                    player[i].skill = lightning'''
+            if player[i].skill == power + 1:
                 player[i].skill = 0
-            check = (player[i].Ep >= skills[player[i].skill].cost and player[i].no[player[i].skill - 3] == 0)
+#            print(ti,player[i].skill,player[i].no[player[i].skill - 3])
+            check = (player[i].Ep >= skills[player[i].skill].cost
+                     and player[i].no[player[i].skill - 3] == 0)
             if(player[i].skill == gou and player[i].HP > 1):
                 check = 0
             if(player[i].skill == gou + 1 and player[i].last_skill != power):
@@ -136,110 +165,118 @@ def Choose_Skill(i):
 
 
 # 游戏过程
-while player[0].HP > 0 and player[1].HP > 0:
-    t += 1
+while ti <= xx:
+    player[0] = Players()
+    player[1] = Players()
+    player[0].no = player[1].no = [0] * len(skills)
+    ti += 1
+    t, w = 0, 0
+    data = [player[0], player[1]]
+    while player[0].HP > 0 and player[1].HP > 0:
+        t += 1
 
+    #    fo.write('1:{}\t2:{}'.format(skills[player[0].last_skill].name,skills[player[1].last_skill].name))
+        Choose_Skill(0)
+        Choose_Skill(1)
+        P0 = copy.deepcopy(player[0])
+        P1 = copy.deepcopy(player[1])
+        data += [P0, P1]
+    #    fo.write('%d %d %d\t%d %d %d\n'%(player[0].HP,player[0].skill,player[0].Ep,player[1].HP,player[1].skill,player[1].Ep))
 
-#    fo.write('1:{}\t2:{}'.format(skills[player[0].last_skill].name,skills[player[1].last_skill].name))
-    Choose_Skill(0)
-    Choose_Skill(1)
-    P0 = copy.deepcopy(player[0])
-    P1 = copy.deepcopy(player[1])
-    data += [P0, P1]
-#    fo.write('%d %d %d\t%d %d %d\n'%(player[0].HP,player[0].skill,player[0].Ep,player[1].HP,player[1].skill,player[1].Ep))
-    '''#test
-    player[1].skill=gou
-    player[0].skill=bagua-1'''
+        # 结算
 
-    # 结算
-
-    # 蓄能及聚能环
-    for i in range(0, 2):
-        player[i].last_skill = player[i].skill
-        if player[i].skill == power:
-            player[i].skill = 0
-    if player[0].skill == power - 1:
-        player[0].skill = 0
-        w += 1
-    else:
-        w = 0
-    for i in range(0, 2):
-        for j in range(0, power - 3):
-            if player[i].no[j] > 0:
-                player[i].no[j] -= 1
-        # 勾
-        if player[i].skill == gou:
-            if Bagua(i):
+        # 蓄能及聚能环
+        for i in range(0, 2):
+            player[i].last_skill = player[i].skill
+            player[i].last_Ep = player[i].Ep
+            if player[i].skill == power:
+                player[i].skill = 0
+        if player[0].skill == power + 1:
+            player[0].skill = 0
+            w += 1
+        else:
+            w = 0
+        for i in range(0, 2):
+            for j in range(0, power - 3):
+                if player[i].no[j] > 0:
+                    player[i].no[j] -= 1
+            # 雷击之枪
+            if player[i].skill == gou - 1:
+                player[(i + 1) & 1].kill = player[(i + 1) & 1].last_skill = 0
                 break
-            elif player[(i + 1) & 1].skill == bagua - 1:
-                break
-            elif player[(i + 1) & 1].skill == 5:
-                break
-            elif skills[player[(i + 1) & 1].skill].priority < 2:
-                player[i].HP += 1
-                player[(i + 1) & 1].HP -= 1
-        # 电磁炮
-        elif player[i].skill == gou + 1:
-            if Bagua(i):
-                break
-            elif player[(i + 1) & 1].skill == bagua - 1:
-                player[i].HP -= 2
-            elif player[(i + 1) & 1].skill != 3:
-                player[(i + 1) & 1].HP -= 2
-                if player[(i + 1) & 1].skill == 4:
-                    player[i].HP -= 1
-                if player[(i + 1) & 1].skill == snipe:
-                    player[(i + 1) & 1].skill = 0
-            if player[i].skill == lightning:
-                player[i].HP -= 2
-                player[i].no[player[i].skill - 3] = 3
-        # 激光眼
-        elif player[i].skill == gou + 2:
-            if player[(i + 1) & 1].skill == bagua - 2:
-                player[(i + 1) & 1].HP -= 1
-                player[i].HP -= 1
-            elif player[(i + 1) & 1].skill == bagua - 1:
-                player[i].HP -= 1
-            elif player[(i + 1) & 1].skill >= attact_num or player[(i + 1) & 1].skill == 0:
-                player[(i + 1) & 1].HP -= 1
-            if player[(i + 1) & 1].skill == snipe:
-                player[(i + 1) & 1].skill = 0
-            # 同时攻击类
-        elif player[(i + 1) & 1].skill != gou + 1:
-            if(player[i].skill >= attact_num and player[(i + 1) & 1].skill >= attact_num):
-                if skills[player[i].skill].priority > skills[player[(i + 1) & 1].skill].priority:
-                    player[(i + 1) & 1].HP += table[player[i].skill - attact_num][0][0]
+            # 勾
+            elif player[i].skill == gou:
+                if Bagua(i):
+                    break
+                elif player[(i + 1) & 1].skill == bagua - 1:
+                    break
+                elif player[(i + 1) & 1].skill == 5:
+                    break
+                elif skills[player[(i + 1) & 1].skill].priority < 2:
+                    player[i].HP += 1
+                    player[(i + 1) & 1].HP -= 1
+            # 电磁炮
+            elif player[i].skill == gou + 1:
+                if Bagua(i):
+                    break
+                elif player[(i + 1) & 1].skill == bagua - 1:
+                    player[i].HP -= 2
+                elif player[(i + 1) & 1].skill != 3:
+                    player[(i + 1) & 1].HP -= 2
+                    if player[(i + 1) & 1].skill == 4:
+                        player[i].HP -= 1
+                    if player[(i + 1) & 1].skill == snipe:
+                        player[(i + 1) & 1].skill = 0
                 if player[i].skill == lightning:
                     player[i].HP -= 2
                     player[i].no[player[i].skill - 3] = 3
-        # 一方防御类
-            elif(player[i].skill >= attact_num):
-                if Bagua(i):
-                    break
-                player[(i + 1) & 1].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][0]
-                player[i].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][1]
-        # 狙击
-        if player[i].skill == snipe:
-            if player[(i + 1) & 1].skill == 0:
-                if(random.randint(0, 8) == 0):
+            # 激光眼
+            elif player[i].skill == gou + 2:
+                if player[(i + 1) & 1].skill == bagua - 2:
                     player[(i + 1) & 1].HP -= 1
-            elif player[(i + 1) & 1].skill == bagua - 1:
-                if(random.randint(0, 8) == 0):
                     player[i].HP -= 1
-        # 大雷
-        if(player[i].skill == lightning):
-            player[(i + 1) & 1].last_skill = 0
-            if(player[(i + 1) & 1].skill > 2):
-                player[(i + 1) & 1].no[player[(i + 1) & 1].skill - 3] = 3
+                elif player[(i + 1) & 1].skill == bagua - 1:
+                    player[i].HP -= 1
+                elif player[(i + 1) & 1].skill >= attact_num or player[(i + 1) & 1].skill == 0:
+                    player[(i + 1) & 1].HP -= 1
+                if player[(i + 1) & 1].skill == snipe:
+                    player[(i + 1) & 1].skill = 0
+                # 同时攻击类
+            elif player[(i + 1) & 1].skill != gou + 1:
+                if(player[i].skill >= attact_num and player[(i + 1) & 1].skill >= attact_num):
+                    if skills[player[i].skill].priority > skills[player[(i + 1) & 1].skill].priority:
+                        player[(i + 1) & 1].HP += table[player[i].skill - attact_num][0][0]
+                    if player[i].skill == lightning:
+                        player[i].HP -= 2
+                        player[i].no[player[i].skill - 3] = 3
+            # 一方防御类
+                elif(player[i].skill >= attact_num):
+                    if Bagua(i):
+                        break
+                    player[(i + 1) & 1].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][0]
+                    player[i].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][1]
+            # 狙击
+            if player[i].skill == snipe:
+                if player[(i + 1) & 1].skill == 0:
+                    if(random.randint(0, 8) == 0):
+                        player[(i + 1) & 1].HP -= 1
+                elif player[(i + 1) & 1].skill == bagua - 1:
+                    if(random.randint(0, 8) == 0):
+                        player[i].HP -= 1
+            # 大雷
+            if(player[i].skill == lightning):
+                player[(i + 1) & 1].last_skill = 0
+                if(player[(i + 1) & 1].skill > 2):
+                    player[(i + 1) & 1].no[player[(i + 1) & 1].skill - 3] = 3
 
-# 游戏结束
-if(not (player[0].HP <= 0 and player[1].HP <= 0)):
-    if player[0].HP <= 0:
-        for i in range(1, t + 1):
-            fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep,
+    # 游戏结束
+    if(not (player[0].HP <= 0 and player[1].HP <= 0)):
+        if player[0].HP <= 0:
+            for i in range(1, t + 1):
+                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep,
                                                    data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep))
-    elif player[1].HP <= 0:
-        for i in range(1, t + 1):
-            fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep,
+        elif player[1].HP <= 0:
+            for i in range(1, t + 1):
+                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep,
                                                    data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep))
-fo.write('-1 -1 -1\t-1 -1 -1\n')
+    fo.write('-1 -1 -1\t-1 -1 -1\n')
