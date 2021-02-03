@@ -3,6 +3,7 @@ import random
 import copy
 import os
 
+
 class Players:  # 玩家类
     name = ''
     Ep = 0
@@ -21,14 +22,14 @@ print('欢迎来到拍手游戏\n正在加载AI，请稍候')
 player = [Players('玩家'), Players('电脑')]
 data = [player[0], player[1]]
 m, n = 18, 17
-ai = [[[[[[[0 for a in range(n)]for b in range(m)]for c in range(n + 1)]for d in range(5)]
-        for e in range(m)]for f in range(n)]for g in range(5)]
+ai = [[[[[[[0 for a in range(n)]for b in range(m)]for c in range(n + 1)]for d in range(3)]
+        for e in range(m)]for f in range(n)]for g in range(3)]
 print('已加载50%')
 f1 = open('table.data', 'r')
-for a in range(5):
+for a in range(3):
     for b in range(n):
         for c in range(m):
-            for d in range(5):
+            for d in range(3):
                 for e in range(n + 1):
                     for f in range(m):
                         ai[a][b][c][d][e][f] = list(map(int, f1.readline().split()))
@@ -132,7 +133,8 @@ def Choose_Skill(i):
                 player[i].skill -= len(skills)
                 if(player[i].Ep < 18 and player[a].last_Ep < 18):
                     #                    print(player[i].HP,player[i].last_skill,player[i].Ep,player[a].HP,player[a].last_skill,player[a].last_Ep)
-                    ta = ai[int(player[i].HP)][player[i].last_skill][player[i].Ep][int(player[a].HP)][player[a].last_skill][player[a].last_Ep]
+                    ta = ai[int(player[i].HP - 1)][player[i].last_skill][player[i].Ep][int(player[a].HP - 1)
+                                                                                       ][player[a].last_skill][player[a].last_Ep]
                     s = sum(ta)
                     ss = 0
                     for x in range(16):
@@ -144,7 +146,7 @@ def Choose_Skill(i):
                 player[i].skill = 0
             try:
                 check = (player[i].Ep >= skills[player[i].skill].cost and player[i].no[player[i].skill - 3] == 0)
-            except :
+            except:
                 print(player[i].skill)
             if(player[i].skill == gou and player[i].HP > 1):
                 check = 0
@@ -229,68 +231,75 @@ while player[0].HP > 0 and player[1].HP > 0:
     player[0].skill=bagua-1'''
 
     # 结算
-
+    f = 0
     # 蓄能及聚能环
     for i in range(0, 2):
+        num = (i + 1) & 1
         player[i].last_skill = player[i].skill
         player[i].last_Ep = player[i].Ep
         if player[i].skill == power:
             player[i].skill = 0
+        # 雷击之枪
+        if player[i].skill == gou - 1:
+            if player[num].skill == 0:
+                player[num].Ep -= 1
+            player[num].skill = player[num].last_skill = 0
+            f = 1
     if player[0].skill == power + 1:
         player[0].skill = 0
         w += 1
     else:
         w = 0
+    if f:
+        continue
     for i in range(0, 2):
+        num = (i + 1) & 1
         for j in range(0, power - 3):
             if player[i].no[j] > 0:
                 player[i].no[j] -= 1
-        # 雷击之枪
-        if player[i].skill == gou - 1:
-            player[(i + 1) & 1].kill = player[(i + 1) & 1].last_skill = 0
-            break
+
         # 勾
-        elif player[i].skill == gou:
+        if player[i].skill == gou:
             if Bagua(i):
                 break
-            elif player[(i + 1) & 1].skill == bagua - 1:
+            elif player[num].skill == bagua - 1:
                 break
-            elif player[(i + 1) & 1].skill == 5:
+            elif player[num].skill == 4:
                 break
-            elif skills[player[(i + 1) & 1].skill].priority < 2:
+            elif skills[player[num].skill].priority < 2:
                 player[i].HP += 1
-                player[(i + 1) & 1].HP -= 1
+                player[num].HP -= 1
         # 电磁炮
         elif player[i].skill == gou + 1:
             if Bagua(i):
                 break
-            elif player[(i + 1) & 1].skill == bagua - 1:
+            elif player[num].skill == bagua - 1:
                 player[i].HP -= 2
-            elif player[(i + 1) & 1].skill != 3:
-                player[(i + 1) & 1].HP -= 2
-                if player[(i + 1) & 1].skill == 4:
+            elif player[num].skill != 3:
+                player[num].HP -= 2
+                if player[num].skill == 4:
                     player[i].HP -= 1
-                if player[(i + 1) & 1].skill == snipe:
-                    player[(i + 1) & 1].skill = 0
+                if player[num].skill == snipe:
+                    player[num].skill = 0
             if player[i].skill == lightning:
                 player[i].HP -= 2
                 player[i].no[player[i].skill - 3] = 3
         # 激光眼
         elif player[i].skill == gou + 2:
-            if player[(i + 1) & 1].skill == bagua - 2:
-                player[(i + 1) & 1].HP -= 1
+            if player[num].skill == bagua - 2:
+                player[num].HP -= 1
                 player[i].HP -= 1
-            elif player[(i + 1) & 1].skill == bagua - 1:
+            elif player[num].skill == bagua - 1:
                 player[i].HP -= 1
-            elif player[(i + 1) & 1].skill >= attact_num or player[(i + 1) & 1].skill == 0:
-                player[(i + 1) & 1].HP -= 1
-            if player[(i + 1) & 1].skill == snipe:
-                player[(i + 1) & 1].skill = 0
+            elif player[num].skill >= attact_num or player[num].skill == 0:
+                player[num].HP -= 1
+            if player[num].skill == snipe:
+                player[num].skill = 0
             # 同时攻击类
-        elif player[(i + 1) & 1].skill != gou + 1:
-            if(player[i].skill >= attact_num and player[(i + 1) & 1].skill >= attact_num):
-                if skills[player[i].skill].priority > skills[player[(i + 1) & 1].skill].priority:
-                    player[(i + 1) & 1].HP += table[player[i].skill - attact_num][0][0]
+        elif player[num].skill != gou + 1:
+            if(player[i].skill >= attact_num and player[num].skill >= attact_num):
+                if skills[player[i].skill].priority > skills[player[num].skill].priority:
+                    player[num].HP += table[player[i].skill - attact_num][0][0]
                 if player[i].skill == lightning:
                     player[i].HP -= 2
                     player[i].no[player[i].skill - 3] = 3
@@ -298,23 +307,23 @@ while player[0].HP > 0 and player[1].HP > 0:
             elif(player[i].skill >= attact_num):
                 if Bagua(i):
                     break
-                player[(i + 1) & 1].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][0]
-                player[i].HP += table[player[i].skill - attact_num][player[(i + 1) & 1].skill][1]
+                player[num].HP += table[player[i].skill - attact_num][player[num].skill][0]
+                player[i].HP += table[player[i].skill - attact_num][player[num].skill][1]
         # 狙击
         if player[i].skill == snipe:
-            if player[(i + 1) & 1].skill == 0:
+            if player[num].skill == 0:
                 if(random.randint(0, 8) == 0):
-                    print('{}被爆头！'.format(player[(i + 1) & 1].name))
-                    player[(i + 1) & 1].HP -= 1
-            elif player[(i + 1) & 1].skill == bagua - 1:
+                    print('{}被爆头！'.format(player[num].name))
+                    player[num].HP -= 1
+            elif player[num].skill == bagua - 1:
                 if(random.randint(0, 8) == 0):
-                    print('{}被爆头！'.format(player[(i + 1) & 1].name))
+                    print('{}被爆头！'.format(player[num].name))
                     player[i].HP -= 1
         # 大雷
         if(player[i].skill == lightning):
-            player[(i + 1) & 1].last_skill = 0
-            if(player[(i + 1) & 1].skill > 2):
-                player[(i + 1) & 1].no[player[(i + 1) & 1].skill - 3] = 3
+            player[num].last_skill = 0
+            if(player[num].skill > 2):
+                player[num].no[player[num].skill - 3] = 3
 
 # 游戏结束
 if(player[0].HP <= 0 and player[1].HP <= 0):
@@ -331,5 +340,7 @@ else:
     print('你赢了')
 fo.write('-1 -1 -1\t-1 -1 -1\n')
 print('一共进行了{}回合\n正在存储AI'.format(t))
+f1.close()
+fo.close()
 os.system('Deal.exe')
 input('按回车退出')
