@@ -21,15 +21,15 @@ player = [Players(), Players()]
 data = [player[0], player[1]]
 ff = open('time', 'r')
 xx = int(ff.read())
-m, n = 18, 17
-ai = [[[[[[[0 for a in range(n)]for b in range(m)]for c in range(n + 1)]for d in range(3)]
+m, n = 18, 18
+ai = [[[[[[[0 for a in range(n-1)]for b in range(m)]for c in range(n)]for d in range(3)]
         for e in range(m)]for f in range(n)]for g in range(3)]
 f1 = open('table.data', 'r')
 for a in range(3):
     for b in range(n):
         for c in range(m):
             for d in range(3):
-                for e in range(n + 1):
+                for e in range(n):
                     for f in range(m):
                         ai[a][b][c][d][e][f] = list(map(int, f1.readline().split()))
 fo = open('data', 'w')
@@ -148,9 +148,9 @@ def Choose_Skill(i):
                     player[i].skill = lightning'''
             if player[i].skill == power + 1:
                 player[i].skill = 0
-#            print(ti,player[i].skill,player[i].no[player[i].skill - 3])
+#            print(ti,player[i].skill,player[i].no[player[i].skill])
             check = (player[i].Ep >= skills[player[i].skill].cost
-                     and player[i].no[player[i].skill - 3] == 0)
+                     and player[i].no[player[i].skill] == 0)
             if(player[i].skill == gou and player[i].HP > 1):
                 check = 0
             if(player[i].skill == gou + 1 and player[i].last_skill != power):
@@ -169,7 +169,8 @@ def Choose_Skill(i):
 while ti <= xx:
     player[0] = Players()
     player[1] = Players()
-    player[0].no = player[1].no = [0] * len(skills)
+    player[0].no = [0] * len(skills)
+    player[1].no = [0] * len(skills)
     ti += 1
     t, w = 0, 0
     data = [player[0], player[1]]
@@ -232,7 +233,7 @@ while ti <= xx:
                         player[num].skill = 0
                 if player[i].skill == lightning:
                     player[i].HP -= 2
-                    player[i].no[player[i].skill - 3] = 3
+                    player[i].no[player[i].skill] = 3
             # 激光眼
             elif player[i].skill == gou + 2:
                 if player[num].skill == bagua - 2:
@@ -251,7 +252,7 @@ while ti <= xx:
                         player[num].HP += table[player[i].skill - attact_num][0][0]
                     if player[i].skill == lightning:
                         player[i].HP -= 2
-                        player[i].no[player[i].skill - 3] = 3
+                        player[i].no[player[i].skill] = 3
             # 一方防御类
                 elif(player[i].skill >= attact_num):
                     if Bagua(i):
@@ -270,16 +271,19 @@ while ti <= xx:
             if(player[i].skill == lightning):
                 player[num].last_skill = 0
                 if(player[num].skill > 2):
-                    player[num].no[player[num].skill - 3] = 3
+                    player[num].last_skill = 0
+                    player[num].no[player[num].skill] = 3
+                if player[num].last_skill >= power:
+                    player[num].no[player[num].last_skill] = 3
 
     # 游戏结束
     if(not (player[0].HP <= 0 and player[1].HP <= 0)):
         if player[0].HP <= 0:
             for i in range(1, t + 1):
-                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep,
-                                                   data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep))
+                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].last_skill, data[i * 2 + 1].Ep,
+                                                   data[i * 2 + 0].HP, data[i * 2 + 0].last_skill, data[i * 2 + 0].Ep))
         elif player[1].HP <= 0:
             for i in range(1, t + 1):
-                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep,
-                                                   data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep))
+                fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].last_skill, data[i * 2 + 0].Ep,
+                                                   data[i * 2 + 1].HP, data[i * 2 + 1].last_skill, data[i * 2 + 1].Ep))
     fo.write('-1 -1 -1\t-1 -1 -1\n')
