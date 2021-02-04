@@ -21,8 +21,8 @@ class Players:  # 玩家类
 print('欢迎来到拍手游戏\n正在加载AI，请稍候')
 player = [Players('玩家'), Players('电脑')]
 data = [player[0], player[1]]
-m, n = 18, 17
-ai = [[[[[[[0 for a in range(n)]for b in range(m)]for c in range(n + 1)]for d in range(3)]
+m, n = 18, 18
+ai = [[[[[[[0 for a in range(n - 1)]for b in range(m)]for c in range(n)]for d in range(3)]
         for e in range(m)]for f in range(n)]for g in range(3)]
 print('已加载50%')
 f1 = open('table.data', 'r')
@@ -30,7 +30,7 @@ for a in range(3):
     for b in range(n):
         for c in range(m):
             for d in range(3):
-                for e in range(n + 1):
+                for e in range(n):
                     for f in range(m):
                         ai[a][b][c][d][e][f] = list(map(int, f1.readline().split()))
 fo = open('data', 'w')
@@ -72,7 +72,8 @@ skills = [Skills('ジ', -1, 0, 0),
           Skills('蓄能', 1, 0, 0),
           Skills('聚能环', '第一次使用3个ジ并获得个1个ジ，第二次连续使用获得2个ジ，第三次及之后获得3个ジ', 0, 0)]
 
-player[0].no = player[1].no = [0] * len(skills)
+player[0].no = [0] * len(skills)
+player[1].no = [0] * len(skills)
 # 基础结算表
 #          无       防御     反弹      超反     地雷     转伤
 table = [[[-1, 0], [0, 0], [0, -1], [0, 0], [-1, -1], [0, -1]],  # 枪
@@ -131,7 +132,7 @@ def Choose_Skill(i):
             player[i].skill = random.randint(0, len(skills) * 2 - 1)
             if player[i].skill >= len(skills):  # 电脑算法区
                 player[i].skill -= len(skills)
-                if(player[i].Ep < 18 and player[a].last_Ep < 18):
+                if(player[a].HP < 4 and player[i].HP < 4 and player[i].Ep < 18 and player[a].last_Ep < 18):
                     #                    print(player[i].HP,player[i].last_skill,player[i].Ep,player[a].HP,player[a].last_skill,player[a].last_Ep)
                     ta = ai[int(player[i].HP - 1)][player[i].last_skill][player[i].Ep][int(player[a].HP - 1)
                                                                                        ][player[a].last_skill][player[a].last_Ep]
@@ -145,7 +146,7 @@ def Choose_Skill(i):
             if player[i].skill == power + 1:
                 player[i].skill = 0
             try:
-                check = (player[i].Ep >= skills[player[i].skill].cost and player[i].no[player[i].skill - 3] == 0)
+                check = (player[i].Ep >= skills[player[i].skill].cost and player[i].no[player[i].skill] == 0)
             except:
                 print(player[i].skill)
             if(player[i].skill == gou and player[i].HP > 1):
@@ -171,19 +172,21 @@ while player[0].HP > 0 and player[1].HP > 0:
     print('Player HP:{} Ep{}   Computer HP:{} Ep{}\n'.format(player[0].HP, player[0].Ep, player[1].HP, player[1].Ep))
     for i in range(0, len(skills)):
         print('{}、{} \t花费为{}'.format(i, skills[i].name, skills[i].cost))
+        '''if i>2:print(player[0].no[i])
+        else:print('')'''
 
     player[0].skill = int(input('输入你的技能符：'))
 #    print('1:{}\t2:{}'.format(skills[player[0].last_skill].name,skills[player[1].last_skill].name))
     # 电脑技能判定
     Choose_Skill(1)
     # 技能判定
-    if (player[0].skill > power or player[0].skill < 0):  # 安全保护
+    if (player[0].skill >= len(skills) or player[0].skill < 0):  # 安全保护
         player[0].skill = 0
         Pass()
-    elif (player[0].skill > 2 and player[0].no[player[0].skill - 3] > 0):
+    elif (player[0].skill > 2 and player[0].no[player[0].skill] > 0):
         player[0].HP -= 1
+        print('该技能还需{}回合才能使用'.format(player[0].no[player[0].skill]))
         player[0].skill = 0
-        print('该技能还需{}回合才能使用'.format(player[0].no[player[0].skill - 3]))
     elif player[0].skill == power + 1:  # 聚能环
         if w == 0:
             if player[0].Ep < 3:
@@ -244,6 +247,7 @@ while player[0].HP > 0 and player[1].HP > 0:
             if player[num].skill == 0:
                 player[num].Ep -= 1
             player[num].skill = player[num].last_skill = 0
+            w = 0
             f = 1
     if player[0].skill == power + 1:
         player[0].skill = 0
@@ -254,7 +258,7 @@ while player[0].HP > 0 and player[1].HP > 0:
         continue
     for i in range(0, 2):
         num = (i + 1) & 1
-        for j in range(0, power - 3):
+        for j in range(0, power + 1):
             if player[i].no[j] > 0:
                 player[i].no[j] -= 1
 
@@ -302,7 +306,8 @@ while player[0].HP > 0 and player[1].HP > 0:
                     player[num].HP += table[player[i].skill - attact_num][0][0]
                 if player[i].skill == lightning:
                     player[i].HP -= 2
-                    player[i].no[player[i].skill - 3] = 3
+                    player[i].no[player[i].skill] = 3
+                    #print('{} of {} is not usable\nYour list is{}\nIts is{}'.format(player[i].skill,i,player[0].no,player[1].no))
         # 一方防御类
             elif(player[i].skill >= attact_num):
                 if Bagua(i):
@@ -320,10 +325,14 @@ while player[0].HP > 0 and player[1].HP > 0:
                     print('{}被爆头！'.format(player[num].name))
                     player[i].HP -= 1
         # 大雷
-        if(player[i].skill == lightning):
-            player[num].last_skill = 0
-            if(player[num].skill > 2):
-                player[num].no[player[num].skill - 3] = 3
+        if player[i].skill == lightning:
+            if player[num].skill > 2:
+                player[num].last_skill = 0
+                player[num].no[player[num].skill] = 3
+                #print('{} of {} is not usable\nYour list is{}\nIts is{}'.format(player[num].skill,num,player[0].no,player[1].no))
+            if player[num].last_skill >= power:
+                w = 0
+                player[num].no[player[num].last_skill] = 3
 
 # 游戏结束
 if(player[0].HP <= 0 and player[1].HP <= 0):
@@ -331,12 +340,12 @@ if(player[0].HP <= 0 and player[1].HP <= 0):
 elif(player[0].HP <= 0):
     print('你输了')
     for i in range(1, t + 1):
-        fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep,
-                                           data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep))
+        fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 1].HP, data[i * 2 + 1].last_skill, data[i * 2 + 1].Ep,
+                                           data[i * 2 + 0].HP, data[i * 2 + 0].last_skill, data[i * 2 + 0].Ep))
 else:
     for i in range(1, t + 1):
-        fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].skill, data[i * 2 + 0].Ep,
-                                           data[i * 2 + 1].HP, data[i * 2 + 1].skill, data[i * 2 + 1].Ep))
+        fo.write('%d %d %d\t%d %d %d\n' % (data[i * 2 + 0].HP, data[i * 2 + 0].last_skill, data[i * 2 + 0].Ep,
+                                           data[i * 2 + 1].HP, data[i * 2 + 1].last_skill, data[i * 2 + 1].Ep))
     print('你赢了')
 fo.write('-1 -1 -1\t-1 -1 -1\n')
 print('一共进行了{}回合\n正在存储AI'.format(t))
