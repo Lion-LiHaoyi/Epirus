@@ -21,7 +21,7 @@ player = [Players(), Players()]
 data = [player[0], player[1]]
 ff = open('time', 'r')
 xx = int(ff.read())
-m, n = 18, 18
+m, n = 15, 18
 ai = [[[[[[[0 for a in range(n-1)]for b in range(m)]for c in range(n)]for d in range(3)]
         for e in range(m)]for f in range(n)]for g in range(3)]
 f1 = open('table.data', 'r')
@@ -69,7 +69,8 @@ skills = [Skills('ジ', -1, 0, 0),
           Skills('蓄能', 1, 0, 0),
           Skills('聚能环', '第一次使用3个ジ并获得个1个ジ，第二次连续使用获得2个ジ，第三次及之后获得3个ジ', 0, 0)]
 
-player[0].no = player[1].no = [0] * len(skills)
+player[0].no = [0] * len(skills)
+player[1].no = [0] * len(skills)
 # 基础结算表
 #          无       防御     反弹      超反     地雷     转伤
 table = [[[-1, 0], [0, 0], [0, -1], [0, 0], [-1, -1], [0, -1]],  # 枪
@@ -123,7 +124,7 @@ def Choose_Skill(i):
             player[i].skill = random.randint(0, len(skills) * 2 - 1)
             if player[i].skill >= len(skills):  # 电脑算法区
                 player[i].skill -= len(skills)
-                if(player[i].Ep < 18 and player[a].last_Ep < 18):
+                if(player[i].Ep < m and player[a].last_Ep < m):
                     #                    print(player[i].HP,player[i].last_skill,player[i].Ep,player[a].HP,player[a].last_skill,player[a].last_Ep)
                     ta = ai[player[i].HP-1][player[i].last_skill][player[i].Ep][player[a].HP-1][player[a].last_skill][player[a].last_Ep]
                     s = sum(ta)
