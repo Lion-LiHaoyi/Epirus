@@ -30,7 +30,7 @@ English documents are translated using Google/Baidu/Youdao Translator and manual
 	- [Defense class](#defense-class)
 		- [Defense](#defense)
 		- [Rebound](#rebound)
-		- [Eight trigrams array](#eight-trigrams-array)
+		- [Eight-Diagram tactics](#eight-diagram-tactics)
 		- [Stepless speed change](#stepless-speed-change)
 		- [Vajra shield](#vajra-shield)
 		- [Rattan beetle](#rattan-beetle)
@@ -97,7 +97,7 @@ Each character has n drops of blood at the beginning and then begins the game
 ### Priority principle:
 
 1. Game skills are settled according to the priority. If the priority is the same, it will be settled at the same time
-1. The priority is 3
+1. Priorities not specified are all 3.
 1. Attacks with the same priority can cancel each other, while attacks with higher priority can prevent attacks with lower priority
 
 ### About "Loan"
@@ -113,7 +113,7 @@ Each character has n drops of blood at the beginning and then begins the game
 Here are just a few of the patterns that use more people
 1. Standard mode: all skills can be used. Each character has 3HP at the initial stage
 1. Fast mode: you can only use "Ji", "Gun" and "Defense". Each character has 1HP in the initial stage, the defense cannot be used 3 times in a row
-1. Emperor of Europe mode: you can only use the three skills of "Ji", "Vajra shield" and "Eight trigrams array". Each character has 3HP at the initial stage
+1. Emperor of Europe mode: you can only use the three skills of "Ji", "Vajra shield" and "Eight-Diagram tactics". Each character has 3HP at the initial stage
 1. Vampire mode: can use all skills, each deduction of each other's 1HP, you can recover 1HP, each character has 2HP or 1HP at the initial stage
 
 ------------
@@ -124,8 +124,7 @@ notes:
 
 Gun gesture: thumb up, index finger forward, the other three fingers bend back
 
-Judgment: both sides guess fist
-
+Judgment: bth sides play rock-paper-scissors
 
 ------------
 
@@ -137,7 +136,7 @@ Effect: gain an Ep
 
 Cost: None
 
-Gesture: clench your hands and separate them
+Gesture: clench hands apart
 
 
 #### Energy storage
@@ -146,7 +145,7 @@ Effect: accumulate a unit of electric power (eP) or explosive power (EP) to supp
 
 Cost: 1Ep
 
-Gesture: both hands clench the fist
+Gesture: clench hands together
 
 #### Energy-gathering ring
 
@@ -154,7 +153,7 @@ Effect: the first use of 1 Ep, the second continuous use of 2Ep, the third and s
 
 Cost: 3Ep for the first time, but none for subsequent use
 
-Gesture: hands clench fist, up and down
+Gesture: fist with both hands one above the other
 
 ------------
 
@@ -230,7 +229,7 @@ Cost: None
 
 Gesture: extend both hands, palms inward, and put the fingertips in front of you
 
-#### Eight trigrams array
+#### Eight-Diagram tactics
 
 Effect: make a judgment once, and stop some skill damage if you win
 
@@ -240,7 +239,7 @@ Gesture: put your hands in front of you in a ball shape
 
 #### Stepless speed change
 
-Effect: the effect is the same as the "Eight trigrams array" of two rounds
+Effect: the effect is the same as the "Eight-Diagram tactics" of two rounds
 
 Cost: 1Ep
 
@@ -453,7 +452,7 @@ Effect: the next time one of the characters is harmed, the other gets the same d
 
 #### Hop back and forth
 
-Trigger condition: two characters use mirror reflection at the same time, and the copy object and the output object are eventually connected in a ring
+Trigger condition: some characters use mirror reflection at the same time, and the copy object and the output object are eventually connected in a ring
 
 Effect: these players suffer 1 point of light & fire damage at the same time
 
