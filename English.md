@@ -71,7 +71,7 @@ Epirus game is a popular real-time war game for teenagers in the international c
 
 This game rule is based on [CC by-nc-sa](https://creativecommons.org/licenses/by-nc-sa/4.0) source protocol, different people can make certain changes to the rules according to the specific situation, and some excellent skills will also be adopted by the association. The right of final interpretation belongs to the International Epirus Game Rulemaking Association
 
-The computer two-player battle program based on this game is still under development, you can download the corresponding program through the resources if you have suggestions that can be put forward. Make sure you have python3 installed on your computer before playing.
+The computer two-player battle program based on this game has been basically developed, you can download the corresponding program through the resources if you have suggestions that can be put forward. Make sure you have Python 3 installed on your computer before running the.py program.
 
 Current version: v2.1.0
 
