@@ -208,7 +208,6 @@ def Ending():
     f0 = open('count.txt', 'r')
     count = int(f0.read())
     f0.close()
-    f1 = open('table.data', 'w')
     if(player[0].HP <= 0 and player[1].HP <= 0):
         messagebox.showinfo(message='平局')
     elif(player[0].HP <= 0):
@@ -220,12 +219,13 @@ def Ending():
     else:
         messagebox.showinfo(message='你赢了')
         for i in range(1, t):
-            if data[i * 2 + 1].Ep < 15 and data[i * 2 + 0].Ep < 15:
+            if data[i * 2 + 1].Ep < 15 and data[i * 2 + 0].Ep < 15 and data[(i + 1) * 2 + 0].last_skill <= power:
                 ai[int(data[(i + 1) * 2 + 0].HP - 1)][data[i * 2 + 0].last_skill][data[i * 2 + 0].Ep][
                     int(data[(i + 1) * 2 + 1].HP - 1)][data[i * 2 + 1].last_skill][data[i * 2 + 1].Ep][data[(i + 1) * 2 + 0].last_skill] += 1
     lb.insert(END, '一共进行了{}回合'.format(t))
     lb.insert(END, '正在存储AI')
     lb.see(END)
+    f1 = open('table.data', 'w')
     for a in range(3):
         for b in range(n):
             for c in range(m):
