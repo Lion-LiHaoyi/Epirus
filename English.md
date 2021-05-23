@@ -124,7 +124,7 @@ notes:
 
 Gun gesture: thumb up, index finger forward, the other three fingers bend back
 
-Judgment: bth sides play rock-paper-scissors
+Judgment: both sides play rock-paper-scissors
 
 ------------
 
